@@ -62,18 +62,18 @@ def get_occurrences(pattern, text):
     # iedod burtiem karp vertibas
     karp= [0]*(n+1)
     for i in range(n):
-        karp[i+1] = (karp[i] + (ord(text[i])- ord('a')+1)*10**(n-i-1)
+        karp[i+1] = (karp[i] + (ord(text[i])- ord('a')+1)*10**(n-i-1))
 
     kpattern = 0
-    for in in range(m):
-        kpattern = (kpattern + (ord(pattern[i])- ord('a')+1)*10**(n-i-1)
+    for i in range(m):
+        kpattern = (kpattern + (ord(pattern[i])- ord('a')+1)*10**(n-i-1))
 
     output = []
     for i in range (n-m+1):
         rezult= (karp[i+m] - karp[i] +m)
         if rezult == kpattern:
-            if text [i:i+m] = karp:
-                output.append.(i)
+            if text [i:i+m] == karp:
+                output.append(i)
         
 
 
