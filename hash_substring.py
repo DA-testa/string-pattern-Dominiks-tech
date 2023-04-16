@@ -48,31 +48,32 @@ def print_occurrences(output):
 
 def get_occurrences(pattern, text):
     # this function should find the occurances using Rabin Karp alghoritm 
-    # prime = 31
-    # m = 5*10**5
+    
     
     m = len(pattern)
     n = len(text)
 
     # izrekina cik vienibas bus vajadzigas
     burti = [1]
-    for i in range (1, max(n)):
+    for i in range (1, max(n, m)):
         burti.append(burti[i-1])
+
+    p = len(burti)
 
     # iedod burtiem karp vertibas
     karp= [0]*(n+1)
     for i in range(n):
-        karp[i+1] = (karp[i] + (ord(text[i])- ord('a')+1)*10**(n-i-1))
+        karp[i+1] = (karp[i] + (ord(text[i])- ord('a')+1)*p**(n-i-1))
 
     kpattern = 0
     for i in range(m):
-        kpattern = (kpattern + (ord(pattern[i])- ord('a')+1)*10**(n-i-1))
+        kpattern = (kpattern + (ord(pattern[i])- ord('a')+1)*p**(n-i-1))
 
     output = []
     for i in range (n-m+1):
         rezult= (karp[i+m] - karp[i] +m)
         if rezult == kpattern:
-            if text [i:i+m] == karp:
+            if text [i:i+m] == pattern:
                 output.append(i)
         
 
@@ -84,7 +85,7 @@ def get_occurrences(pattern, text):
 
     # and return an iterable variable
     
-    return [0]
+    return output
 
 
 # this part launches the functions
